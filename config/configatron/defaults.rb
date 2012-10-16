@@ -39,4 +39,4 @@ configatron.sprites.vendor_images = [
 ]
 
 # Set which language translations are available.
-configatron.languages.available = ["en", "es", "ca"]
+configatron.languages.available = ["en", "es", "ca", "zh"]

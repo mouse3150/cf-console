@@ -57,3 +57,22 @@ dataTables_lang_ca = {
     "sLast":         "Últim"
   }
 };
+dataTables_lang_zh = {
+  "sProcessing":     "处理中...",
+  "sLoadingRecords": "正在载入数据...",
+  "sLengthMenu":     "Show _MENU_ entries",
+  "sZeroRecords":    "未发现匹配的记录",
+  "sEmptyTable":     "表中没有有效的数据",
+  "sInfo":           "Showing _START_ to _END_ of _TOTAL_ entries",
+  "sInfoEmpty":      "Showing 0 to 0 of 0 entries",
+  "sInfoFiltered":   "(filtered from _MAX_ total entries)",
+  "sInfoPostFix":    "",
+  "sSearch":         "搜索:",
+  "sUrl":            "",
+  "oPaginate": {
+    "sFirst":        "First",
+    "sPrevious":     "Previous",
+    "sNext":         "Next",
+    "sLast":         "Last"
+  }
+};
