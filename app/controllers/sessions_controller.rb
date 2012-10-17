@@ -26,6 +26,8 @@ class SessionsController < ApplicationController
     @remember_me = params[:remember_me]
     begin
       cf = cloudfoundry_client(@target_url)
+      puts @email
+      puts @password
       auth_token = cf.login(@email, @password)
     rescue
       auth_token = nil

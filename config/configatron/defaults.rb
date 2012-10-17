@@ -1,15 +1,16 @@
 # Put all your default configatron settings here.
 
 # Branding
-configatron.brand.logo = "cflogo.png"
-configatron.brand.title = "CF Console"
-configatron.brand.author = "Ferran Rodenas"
+#configatron.brand.logo = "cflogo.png"
+configatron.brand.logo = "logo_lt.gif"
+configatron.brand.title = "TongAppCloud"
+configatron.brand.author = "Chenhao"
 
 # Sets the available Cloud Foundry providers showed at login page.
 # Admits dynamic parameters for the Cloud Controller URL.
 # Just put the parameter (only one) between brackets "{}" and the login page will ask the user for that parameter.
 configatron.available_targets = []
-configatron.available_targets << ["Local CloudFoundry", "http://api.vcap.me"]
+configatron.available_targets << ["Local CloudFoundry", "http://api.tongtech"]
 configatron.available_targets << ["AppFog (AWS service)", "http://api.aws.af.cm"]
 configatron.available_targets << ["AppFog (HP Cloud service)", "http://api.hp.af.cm"]
 configatron.available_targets << ["AppFog (Joyent service)", "http://api.joyent.af.cm"]
