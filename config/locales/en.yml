@@ -343,8 +343,9 @@ en:
       system: "System"
       users: "Users"
     footer:
-      copyright_html: "Copyright &copy; %{year} Ferran Rodenas. All rights reserved."
-      source_code_html: "The source code of this application is available on <a href='https://github.com/frodenas/cf-console'>github</a>."
+      copyright_html: "Copyright &copy 1997-%{year} <a href='https://www.tongtech.com'>tongtech.com</a>. All Rights Reserved."
+      #copyright_html: "Copyright &copy; %{year} Ferran Rodenas. All rights reserved."
+      #source_code_html: "The source code of this application is available on <a href='https://github.com/frodenas/cf-console'>github</a>."
   assets:
     js:
       update: "Update"

@@ -3,7 +3,7 @@
 # Branding
 #configatron.brand.logo = "cflogo.png"
 configatron.brand.logo = "logo_lt.gif"
-configatron.brand.title = "TongAppCloud"
+configatron.brand.title = "TongApplaud"
 configatron.brand.author = "Chenhao"
 
 # Sets the available Cloud Foundry providers showed at login page.
@@ -11,15 +11,15 @@ configatron.brand.author = "Chenhao"
 # Just put the parameter (only one) between brackets "{}" and the login page will ask the user for that parameter.
 configatron.available_targets = []
 configatron.available_targets << ["Local CloudFoundry", "http://api.tongtech"]
-configatron.available_targets << ["AppFog (AWS service)", "http://api.aws.af.cm"]
-configatron.available_targets << ["AppFog (HP Cloud service)", "http://api.hp.af.cm"]
-configatron.available_targets << ["AppFog (Joyent service)", "http://api.joyent.af.cm"]
-configatron.available_targets << ["AppFog (Rackspace service)", "http://api.rackspace.af.cm"]
-configatron.available_targets << ["HP Cloud Services", "http://api.cloudfoundry.hpcloud.com/"]
-configatron.available_targets << ["Iron Foundry", "http://api.gofoundry.net"]
-configatron.available_targets << ["Stackato Sandbox", "https://api.stacka.to"]
-configatron.available_targets << ["VMware CloudFoundry", "http://api.cloudfoundry.com"]
-configatron.available_targets << ["VMware Micro CloudFoundry", "http://api.{Domain}.cloudfoundry.me"]
+#configatron.available_targets << ["AppFog (AWS service)", "http://api.aws.af.cm"]
+#configatron.available_targets << ["AppFog (HP Cloud service)", "http://api.hp.af.cm"]
+#configatron.available_targets << ["AppFog (Joyent service)", "http://api.joyent.af.cm"]
+#configatron.available_targets << ["AppFog (Rackspace service)", "http://api.rackspace.af.cm"]
+#configatron.available_targets << ["HP Cloud Services", "http://api.cloudfoundry.hpcloud.com/"]
+#configatron.available_targets << ["Iron Foundry", "http://api.gofoundry.net"]
+#configatron.available_targets << ["Stackato Sandbox", "https://api.stacka.to"]
+#configatron.available_targets << ["VMware CloudFoundry", "http://api.cloudfoundry.com"]
+#configatron.available_targets << ["VMware Micro CloudFoundry", "http://api.{Domain}.cloudfoundry.me"]
 configatron.available_targets << ["Other", "{Cloud Controller URL}"]
 
 # Deploy from options.
@@ -40,4 +40,5 @@ configatron.sprites.vendor_images = [
 ]
 
 # Set which language translations are available.
-configatron.languages.available = ["en", "es", "ca", "zh"]
+#configatron.languages.available = ["en", "es", "ca", "zh"]
+configatron.languages.available = ["en", "zh"]
