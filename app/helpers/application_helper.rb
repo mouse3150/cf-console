@@ -106,4 +106,6 @@ module ApplicationHelper
     num_seconds -= minutes * 60
     I18n.t('helpers.format.uptime', :days => days, :hours => hours, :minutes => minutes, :seconds => num_seconds)
   end
+  
+  
 end

@@ -1,11 +1,13 @@
+load 'zip_util.rb'
 require 'cloudfoundry'
 
+#require 'zip/zipfilesystem'
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale, :require_login
+  include CFCZIP
 
   private
-
   def require_login
     begin
       @cf_client = cloudfoundry_client(cookies[:cf_target_url], cookies.signed[:cf_auth_token])
@@ -67,5 +69,30 @@ class ApplicationController < ActionController::Base
     end
   rescue
     []
+    end
+
+  def generate_random(len)
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    random_chars = ""
+    1.upto(len) { |i| random_chars << chars[rand(chars.size-1)] }
+    return random_chars
   end
+
+  def  uploadfile(file)
+    if !file.original_filename.empty?
+      filename = getfilename(file.original_filename)
+      file_path = Rails.root + "public/files/#{filename}"
+      File.open(file_path, "wb") do |f|
+        f.write(file.read)
+      end
+    return file_path
+    end
+  end
+
+  def getfilename(filename)
+    if !filename.nil?
+      return filename = generate_random(10) + "_" + filename
+    end
+  end
+
 end
