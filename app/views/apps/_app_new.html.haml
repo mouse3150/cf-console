@@ -69,8 +69,12 @@
                 = sprite_tag("help", :alt => "?", :class=> "help", :title => t('apps.local_dep_help_html'))
                 = label_tag "local_dep", t('apps.local') + ":"
               %td
-                = text_field_tag :localdeploy, @localdeploy, :type => "file", :size => 45, :onchange => "alert(this.value)", :placeholder => t('apps.local_dep_placeholder')
+                %span{:class => "btn btn-success fileinput-button"}
+                  %span= "Add files" 
+                  = file_field("file", "file", :onchange => "selected_file()")
                 .form-field-error
+                %span{:id => "filenameId", :class => "filenameInfo"}
+                %span{:id => "errorId", :class => "errorInfo"}
           - if git_deploy_available?
             %tr
               %td
@@ -102,8 +106,12 @@
                 = sprite_tag("help", :alt => "?", :class=> "help", :title => t('apps.local_dep_help_html'))
                 = label_tag "local_dep", t('apps.local') + ":"
               %td
-                = file_field("file", "file")
-                /= text_field_tag :localdeploy, @localdeploy, :type => "file", :size => 45, :placeholder => t('apps.local_dep_placeholder')
+                %span{:class => "btn btn-success fileinput-button"}
+                  %span= "Add files" 
+                  = file_field("file", "file", :onchange => "selected_file()")
+                .form-field-error
+                %span{:id => "filenameId", :class => "filenameInfo"}
+                %span{:id => "errorId", :class => "errorInfo"}
                 .form-field-error
     .modalBox-submit= submit_tag t('apps.add_app')
 
@@ -129,4 +137,35 @@
           $('#new-app-form tr.gitdeploy').hide();
           $('#new-app-form tr.localdeploy').show();
           }
+        }
+      function selected_file() {
+        var flag = true; 
+        var fileObject = document.getElementById("file_file"); 
+        var errorObject = document.getElementById("errorId");
+        var filenameObject = document.getElementById("filenameId");
+        var filepath = fileObject.value;
+        if(filepath == undefined || filepath == ""){ 
+          fileObject.focus();
+          filenameObject.innerText = "";
+          errorObject.innerText = "请选择上传文件！"; 
+          flag = false; 
+         } else { 
+                var fileArr = filepath.split("\\");
+                var filename = fileArr[fileArr.length-1]
+                filenameObject.innerText = filename
+                var fileTArr = filename.toLowerCase().split("."); 
+                var filetype = fileTArr[fileTArr.length-1]; 
+                if(filetype != "zip" && filetype != "war") { 
+                    fileObject.focus();
+                    filenameObject.innerText = "";
+                    fileObject.value = "";
+                    errorObject.innerText = "上传文件必须为.war或者.zip文件！"; 
+                    flag = false; 
+                  } else { 
+                        errorObject.innerText = ""; 
+                    } 
+          } 
+          //if(flag){ 
+          //  alert("文件上传成功"); 
+          //} 
         }

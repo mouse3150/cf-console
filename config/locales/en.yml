@@ -161,6 +161,9 @@ en:
       instances_blank: "Number of instances cannot be blank."
       name_blank: "Application name cannot be blank."
       app_created: "Application \"%{name}\" created. You must upload applications bits."
+      ##20121101
+      app_deploy_success: "Application \"%{name}\" deploy success."
+      app_framework_detect: "After checkout it's a \"%{frame_type}\" framework，please make sure your select."
       app_created_bits_uploaded: "Application \"%{name}\" created and bits uploaded."
       app_created_no_bits: "Application \"%{name}\" created but no bits were uploaded: %{msg}"
       app_started: "Application \"%{name}\" started."

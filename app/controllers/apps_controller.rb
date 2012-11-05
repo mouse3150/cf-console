@@ -63,10 +63,20 @@ class AppsController < ApplicationController
         app = App.new(@cf_client)
         app.create(@name, @instances, @memsize, @url, framework, runtime, @service)
         #upload application file to cloudfoundry and create app in there
-        upload_app_bits2cf(@name, file_path)
-        
+        upload_ok = false
+        if (lacaldeploy && file_path)
+          upload_ok = upload_app_bits2cf(@name, file_path)
+        end
+        if upload_ok
+          start(@name)
+        end
         @new_app = [] << app.find(@name)
-        flash[:notice] = I18n.t('apps.controller.app_created', :name => @name)
+        unless upload_ok
+          flash[:notice] = I18n.t('apps.controller.app_created', :name => @name)
+        else
+          flash[:notice] = I18n.t('apps.controller.app_deploy_success', :name => @name)
+        end
+
         app_created = true
       rescue Exception => ex
         flash[:alert] = ex.message
@@ -100,10 +110,10 @@ class AppsController < ApplicationController
         end
       end
     end
-    respond_to do |format|
-      format.html { redirect_to apps_info_url }
-      format.js { flash.discard }
-    end
+    #respond_to do |format|
+    #  format.html { redirect_to apps_info_url }
+    #  format.js { flash.discard }
+    #end
   end
 
   def show
@@ -743,7 +753,7 @@ class AppsController < ApplicationController
         raise I18n.t('apps.controller.app_framework_detect', :frame_type => "spring")
     # JavaWeb
     else
-      if framework != "java_web" || framework != "java_web_tongweb"
+      if !(framework != "java_web" || framework != "java_web_tongweb")
         raise I18n.t('apps.controller.app_framework_detect', :frame_type => "java_web")
       end
     end
