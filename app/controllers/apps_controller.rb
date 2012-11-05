@@ -25,6 +25,22 @@ class AppsController < ApplicationController
     end
   end
 
+  def do_start(appname = nil)
+    @name = appname || params[:name]
+    if @name.blank?
+      raise I18n.t('apps.controller.name_blank')
+    else
+      begin
+        @name = @name.strip
+        app = App.new(@cf_client)
+        @updated_app = [] << app.start(@name)
+        @updated_app.collect! { |app_info| app.find(@name)}
+      rescue Exception => ex
+        raise ex.message
+      end
+    end
+  end
+  
   def create
     @name = params[:name]
     @instances = params[:instances]
@@ -64,11 +80,11 @@ class AppsController < ApplicationController
         app.create(@name, @instances, @memsize, @url, framework, runtime, @service)
         #upload application file to cloudfoundry and create app in there
         upload_ok = false
-        if (lacaldeploy && file_path)
+        if (localdeploy && file_path)
           upload_ok = upload_app_bits2cf(@name, file_path)
         end
         if upload_ok
-          start(@name)
+          do_start(@name)
         end
         @new_app = [] << app.find(@name)
         unless upload_ok
@@ -76,7 +92,6 @@ class AppsController < ApplicationController
         else
           flash[:notice] = I18n.t('apps.controller.app_deploy_success', :name => @name)
         end
-
         app_created = true
       rescue Exception => ex
         flash[:alert] = ex.message
@@ -110,10 +125,10 @@ class AppsController < ApplicationController
         end
       end
     end
-    #respond_to do |format|
-    #  format.html { redirect_to apps_info_url }
-    #  format.js { flash.discard }
-    #end
+    respond_to do |format|
+      format.html { redirect_to apps_info_url }
+      format.js { flash.discard }
+    end
   end
 
   def show
@@ -146,8 +161,8 @@ class AppsController < ApplicationController
     end
   end
 
-  def start(appname = nil)
-    @name = appname || params[:name]
+  def start()
+    @name = params[:name]
     if @name.blank?
       flash[:alert] = I18n.t('apps.controller.name_blank')
     else
