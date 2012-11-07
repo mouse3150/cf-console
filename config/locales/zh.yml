@@ -65,9 +65,9 @@ zh:
     local: "本地部署"
     remote: "远程"
     #2012.10.23 comment.
-    local_dep_help_html: "输入本地部署目录，如：c:/deploy/."
-    local_dep_placeholder: "本地目录"
-    local_dep_title_html: "输入正确的目录."
+    app_upload_button: "上传文件..."
+    local_dep_help_html: "选择应用包文件，必须为.zip或.war类型的文件."
+    local_dep_title_html: "必须为.zip或.war类型的文件."
     
     git_repo: "Git仓库 URI"
     git_repo_placeholder: "git://github.com/user/repo.git"
@@ -229,7 +229,8 @@ zh:
       FLAPPING: "Flapping"
   services:
     title: "服务"
-    tab_services: "可用服务"
+    tab_services: "内部服务"
+    tab_ex_services: "外部服务"
     name_head: "名称"
     service_head: "服务"
     version_head: "版本"

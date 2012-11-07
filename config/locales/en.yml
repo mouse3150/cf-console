@@ -65,9 +65,9 @@ en:
     local: "Local"
     remote: "Remote"
     #2012.10.23 comment.
-    local_dep_help_html: "Enter the local deployment directory,like 'c:/deploy/'"
-    local_dep_placeholder: "Local directory"
-    local_dep_title_html: "Enter the correct directory."
+    app_upload_button: "Add file..."
+    local_dep_help_html: "Select application bits, make sure the file type of *.zip or *.war"
+    local_dep_title_html: "make sure the file type of *.zip or *.war"
     
     git_repo: "Git Repository URI"
     git_repo_placeholder: "git://github.com/user/repo.git"

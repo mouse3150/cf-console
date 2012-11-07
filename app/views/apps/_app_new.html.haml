@@ -70,11 +70,11 @@
                 = label_tag "local_dep", t('apps.local') + ":"
               %td
                 %span{:class => "btn btn-success fileinput-button"}
-                  %span= "Add files" 
-                  = file_field("file", "file", :onchange => "selected_file()")
-                .form-field-error
+                  %span= t('apps.app_upload_button')
+                  = file_field("file", "file", :title => t('apps.local_dep_title_html'), :onchange => "selected_file()", :onclick => "selected_file_clean()")
                 %span{:id => "filenameId", :class => "filenameInfo"}
                 %span{:id => "errorId", :class => "errorInfo"}
+                .form-field-error
           - if git_deploy_available?
             %tr
               %td
@@ -107,9 +107,8 @@
                 = label_tag "local_dep", t('apps.local') + ":"
               %td
                 %span{:class => "btn btn-success fileinput-button"}
-                  %span= "Add files" 
-                  = file_field("file", "file", :onchange => "selected_file()")
-                .form-field-error
+                  %span= t('apps.app_upload_button')
+                  = file_field("file", "file", :title => t('apps.local_dep_title_html'), :onchange => "selected_file()", :onclick => "selected_file_clean()")
                 %span{:id => "filenameId", :class => "filenameInfo"}
                 %span{:id => "errorId", :class => "errorInfo"}
                 .form-field-error
@@ -138,34 +137,41 @@
           $('#new-app-form tr.localdeploy').show();
           }
         }
+      function selected_file_clean() {
+        var fileObject = $("#file_file"); 
+        var errorObject = $("#errorId");
+        var filenameObject = $("#filenameId");
+        errorObject.html("");
+        filenameObject.html("");
+        fileObject.val("");
+        }  
       function selected_file() {
         var flag = true; 
-        var fileObject = document.getElementById("file_file"); 
-        var errorObject = document.getElementById("errorId");
-        var filenameObject = document.getElementById("filenameId");
-        var filepath = fileObject.value;
-        if(filepath == undefined || filepath == ""){ 
-          fileObject.focus();
-          filenameObject.innerText = "";
-          errorObject.innerText = "请选择上传文件！"; 
-          flag = false; 
-         } else { 
-                var fileArr = filepath.split("\\");
-                var filename = fileArr[fileArr.length-1]
-                filenameObject.innerText = filename
-                var fileTArr = filename.toLowerCase().split("."); 
-                var filetype = fileTArr[fileTArr.length-1]; 
-                if(filetype != "zip" && filetype != "war") { 
-                    fileObject.focus();
-                    filenameObject.innerText = "";
-                    fileObject.value = "";
-                    errorObject.innerText = "上传文件必须为.war或者.zip文件！"; 
-                    flag = false; 
-                  } else { 
-                        errorObject.innerText = ""; 
-                    } 
-          } 
-          //if(flag){ 
-          //  alert("文件上传成功"); 
-          //} 
+        var fileObject = $("#file_file"); 
+        var errorObject = $("#errorId");
+        var filenameObject = $("#filenameId");
+        
+        var filepath = fileObject.val();
+        alert(filepath);
+        if (filepath == undefined || filepath == "") {
+            filenameObject.html("");
+            errorObject.html("请选择上传文件！");
+            flag = false;
+          } else {
+            var fileArr = filepath.split("\\");
+            var filename = fileArr[fileArr.length-1]
+            var fileTArr = filename.toLowerCase().split(".");
+            var filetype = fileTArr[fileTArr.length-1];
+            alert(filetype);
+            if(filetype != "zip" && filetype != "war") { 
+              filenameObject.html("");
+              alert(filetype);
+              fileObject.val("");
+              errorObject.html("上传文件必须为.war或者.zip文件！"); 
+              flag = false; 
+              } else { 
+                   errorObject.html("");
+                   filenameObject.html(filename);
+                }
+           }        
         }
